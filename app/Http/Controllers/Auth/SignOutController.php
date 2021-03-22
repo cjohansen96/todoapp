@@ -15,6 +15,6 @@ class SignOutController extends Controller
      */
     public function __invoke()
     {
-        dd('hello');
+        auth()->logout();
     }
 }

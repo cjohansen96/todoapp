@@ -13,8 +13,12 @@ class SignInController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        dd('hello');
+        if(!$token = auth()->attempt($request->only('email', 'password'))) {
+            return response(null, 401);
+        }
+
+        return response()->json(compact('token'));
     }
 }
